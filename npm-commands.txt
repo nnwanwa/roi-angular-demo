@@ -1,0 +1,15 @@
+﻿// Initialize a folder with package.json - just follow the prompts
+npm init
+
+
+// Install express application framework, save to package.json
+npm install express --save
+
+// Install body-parser to enable HTTP request body JSON parsing
+npm install body-parser --save
+
+// Run the server (in server.js file) assuming this file was selected with npm init
+// Either
+node server
+// Or
+npm start
