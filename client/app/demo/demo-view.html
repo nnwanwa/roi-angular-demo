@@ -1,4 +1,15 @@
-﻿<h1>Demo</h1>
-<input ng-model="dummy"/>
-<button ng-click="angular.noop()">Dummy</button>
-<h2>{{currentTime | date: 'hh:mm:ss'}}</h2>
+﻿<h1>Hello: {{dc.name}}</h1>
+<!-- expressions with a controller as syntax -->
+<input ng-model="dc.name" />
+
+
+<ul>
+    <li ng-repeat="item in [0, 1]">
+        item: {{dc.name}} <input ng-model="dc.name" />
+    </li>
+</ul>
+
+
+<h2>Time: {{dc.currentTime | date: 'hh:mm:ss'}}</h2>
+
+<h2>Location: {{dc.currentLocation | json}}</h2>

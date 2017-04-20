@@ -20,6 +20,7 @@
             })
             .when('/demo', {
                 controller: 'DemoController',
+                controllerAs: 'dc',
                 templateUrl: 'app/demo/demo-view.html'
             })
             .otherwise({
