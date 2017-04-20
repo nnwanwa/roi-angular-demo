@@ -18,6 +18,10 @@
                 controller: 'CoursesController',
                 templateUrl: 'app/courses/courses-view.html'
             })
+            .when('/course/:id', {
+                controller: 'CourseDetailsController',
+                templateUrl: 'app/courses/course-details-view.html'
+            })
             .when('/demo', {
                 controller: 'DemoController',
                 controllerAs: 'dc',

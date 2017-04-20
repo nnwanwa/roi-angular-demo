@@ -52,6 +52,12 @@
             return $http.get('/courses'); // returns a promise
         }
 
+
+        function getOne(id) {
+            console.log('getData');
+            return $http.get('/course/' + id); // returns a promise
+        }
+
         function display(response) {
             console.log('display');
             $scope.courses = response.data;

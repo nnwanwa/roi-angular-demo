@@ -10,7 +10,7 @@
 
 <ul>
     <li ng-repeat="item in courses | filter:(showFilter ? name : '')">
-        {{item.title}}, {{item.duration}} days
+        <a href="#!/course/{{item.id}}">{{item.title}}</a> {{item.duration}} days
         <a href="" ng-click="remove(item)">Remove</a>
     </li>
 </ul>

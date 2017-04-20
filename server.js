@@ -26,6 +26,22 @@ var _courses = [{
 }];
 var _nextId = 3; // we'll use this later
 // controller - a handler to return json data when client requests /courses
+
+app.get('/course/:id', function (req, res) {
+    // 'view'
+    //var course = _courses.find(function (item) {
+    //    return item.id == req.params.id;
+    //});
+
+    _courses.forEach(function (item) {
+        if (item.id == req.params.id) {
+            res.json(item);
+            return;
+        }
+    })
+    res.status(404).end();
+});
+
 app.get('/courses', function (req, res) {
     // 'view'
     res.json(_courses);
