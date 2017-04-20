@@ -5,7 +5,7 @@
     <h2>Filter Value: {{name | lowercase}}</h2>
     Filter: <input ng-model="name">
 </div>
-<span>{{name}}</span>
+<h1 ng-show="errorMessage">Error: {{errorMessage}}</h1>
 <span ng-bind="name"></span>
 
 <ul>
