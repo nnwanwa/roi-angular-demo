@@ -1,0 +1,21 @@
+﻿<h1>Hello Everyone</h1>
+<!-- showFilter in the view === $scope.showFilter in the controller -->
+<label>Show filter: <input type="checkbox" ng-model="showFilter"></label>
+<div ng-show="showFilter">
+    <h2>Filter Value: {{name | lowercase}}</h2>
+    Filter: <input ng-model="name">
+</div>
+
+<ul>
+    <li ng-repeat="item in students | filter:(showFilter ? name : '')">
+        {{item | uppercase}}
+        <a href="" ng-click="remove(item)">Remove</a>
+    </li>
+</ul>
+
+<h2>Add Person</h2>
+<a name="add"></a>
+<form>
+    <label>Name: <input ng-model='newPersonName'></label><br />
+    <button ng-click="add()">Add</button>
+</form>

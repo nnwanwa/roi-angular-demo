@@ -1,0 +1,25 @@
+﻿<h1>Course List</h1>
+<!-- showFilter in the view === $scope.showFilter in the controller -->
+<label>Show filter: <input type="checkbox" ng-model="showFilter"></label>
+<div ng-show="showFilter">
+    <h2>Filter Value: {{name | lowercase}}</h2>
+    Filter: <input ng-model="name">
+</div>
+<span>{{name}}</span>
+<span ng-bind="name"></span>
+
+<ul>
+    <li ng-repeat="item in courses | filter:(showFilter ? name : '')">
+        {{item.title}}, {{item.duration}} days
+        <a href="" ng-click="remove(item)">Remove</a>
+    </li>
+</ul>
+
+<h2>Add Course</h2>
+<a name="add"></a>
+<form>
+    <label>Title: <input ng-model='newItem.title'></label><br />
+    <label>Duration: <input ng-model='newItem.duration'></label><br />
+    <label>Description: <input ng-model='newItem.description'></label><br />
+    <button ng-click="add()">Add</button>
+</form>
