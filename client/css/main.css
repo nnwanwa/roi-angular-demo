@@ -13,6 +13,11 @@
 
 }
 
+.zoom.ng-enter {
+  animation: 0.5s zoomInDown;
+}
+
+
 
 input.ng-dirty.ng-invalid {
     background-color:lightpink;

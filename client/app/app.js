@@ -1,6 +1,6 @@
 ﻿(function (angular, undefined) {
     
-    var roiApp = angular.module('roiApp', ['ngRoute', 'roiPeople', 'roiCourses', 'roiDemo']); // root module declaration
+    var roiApp = angular.module('roiApp', ['ngAnimate', 'ngRoute', 'roiPeople', 'roiCourses', 'roiDemo']); // root module declaration
     // moduleOb.config(cb) runs when app first starts up
     roiApp.config(config);
 
