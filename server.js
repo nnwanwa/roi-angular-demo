@@ -42,6 +42,23 @@ app.get('/course/:id', function (req, res) {
     res.status(404).end();
 });
 
+
+app.delete('/course/:id', function (req, res) {
+    // 'view'
+    //var course = _courses.find(function (item) {
+    //    return item.id == req.params.id;
+    //});
+
+    _courses.forEach(function (item, index) {
+        if (item.id == req.params.id) {
+            _courses.splice(index, 1);
+            res.json(item);
+            return;
+        }
+    })
+    res.status(404).end();
+});
+
 app.get('/courses', function (req, res) {
     // 'view'
     res.json(_courses);

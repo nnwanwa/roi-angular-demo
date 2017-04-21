@@ -3,34 +3,44 @@
     // attach controller to a module moduleOb.controller('name', impl)
     roiCourses.controller('CoursesController', CoursesController);
 
-    CoursesController.$inject = ['$scope', '$http'];
-    function CoursesController($scope, $http) {
+    CoursesController.$inject = ['$scope', '$http', '$interval'];
+    function CoursesController($scope, $http, $interval) {
+        //$scope.$on('timeChange', function (e, data) {
+        //    $scope.errorMessage = data;
 
-        // properties
+        //});
+
+        $interval(function () {
+            $scope.someBooleanExpression = (new Date()).getSeconds() < 30;
+        }, 1000);
+        
+
+        // controller properties
         $scope.name = '';
+        $scope.courses = [];
 
-        // used in Add form...
+        // used in add form...
         $scope.newItem = {
             title: '',
             duration: 0,
             description: ''
         };
 
-
+        // load data from backend
         getData().then(display);
-
-        // list from factory
         
         $scope.showFilter = true;
-        // methods
+        // controller methods
         $scope.add = add;
         $scope.remove = remove;
 
-        
-
-        // method implementations
+        // event handler implementations
         function add() {
-            // angular.copy is a deep copy of an object or array
+
+            //$scope.$emit('someEventName', { eventData: 123, eventOtherData: 'hi there' });
+            //$scope.$broadcast('someEvent', { eventData: 123, eventOtherData: 'hi there' });
+
+
             var objectToAddToServer = $scope.newItem;
 
             addData(objectToAddToServer)
@@ -41,6 +51,15 @@
                 .catch(displayError); // handling an error
         }
 
+        function remove(course) {
+            removeData(course.id)
+                .then(getData)
+                .then(display)
+                .then(clearError)
+                .catch(displayError);
+        }
+
+        // helper functions with $http
         function addData(item) {
             console.log('addData');
             var prom = $http.post('/courses', item);
@@ -52,12 +71,12 @@
             return $http.get('/courses'); // returns a promise
         }
 
-
-        function getOne(id) {
-            console.log('getData');
-            return $http.get('/course/' + id); // returns a promise
+        function removeData(id) {
+            console.log('removeData');
+            return $http.delete('/course/' + id);
         }
 
+        // helper functions without $http
         function display(response) {
             console.log('display');
             $scope.courses = response.data;
@@ -67,7 +86,6 @@
             console.log('displayError');
             $scope.errorMessage = error;
         }
-
 
         function clearError() {
             console.log('clearError');
@@ -80,14 +98,6 @@
             $scope.newItem.duration = '';
             $scope.newItem.description = '';
         }
-
-
-
-        function remove(course) {
-            var index = $scope.courses.indexOf(course);
-            $scope.courses.splice(index, 1);
-        }
-
     }
 
 })(angular); // IIFE
