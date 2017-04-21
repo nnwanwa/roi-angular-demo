@@ -17,13 +17,15 @@
 </ul>
 
 <h2>Add Course</h2>
-<a name="add"></a>
-<form>
-    <label>Title: <input ng-model='newItem.title'></label><br />
-    <div ng-class="{'error':someBooleanExpression,'success':!someBooleanExpression}">This is wrong</div>
-    <label>Duration: <input ng-model='newItem.duration'></label><br />
-    <label>Description: <input ng-model='newItem.description'></label><br />
-    <button ng-click="add()">Add</button>
+
+<div>{{editForm.$valid}}</div>
+
+<form name="editForm">
+    <label>Title: <input name="name" required pattern="^[A-Z][a-z]+JS$" ng-model='newItem.title'></label><br />
+    <div ng-class="{'error': editForm.name.$invalid}" ng-show="editForm.name.$dirty && editForm.name.$invalid">This is wrong</div>
+    <label>Duration: <input name="duration" min="1" max="5" required type="number" ng-model='newItem.duration'></label><br />
+    <label>Description: <input name="description" required ng-model='newItem.description'></label><br />
+    <button ng-disabled="editForm.$invalid" ng-click="add()">Add</button>
 </form>
 
 <div ng-controller="ChildController">

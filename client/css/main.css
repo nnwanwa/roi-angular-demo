@@ -7,3 +7,17 @@
     background-color:green;
     color:white;
 }
+
+.bordered {
+    border: 1px solid black;
+
+}
+
+
+input.ng-dirty.ng-invalid {
+    background-color:lightpink;
+}
+
+input.ng-dirty.ng-valid {
+    background-color:lightgreen;
+}

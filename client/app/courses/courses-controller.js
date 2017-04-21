@@ -10,9 +10,9 @@
 
         //});
 
-        $interval(function () {
-            $scope.someBooleanExpression = (new Date()).getSeconds() < 30;
-        }, 1000);
+        //$interval(function () {
+        //    $scope.someBooleanExpression = (new Date()).getSeconds() < 30;
+        //}, 1000);
         
 
         // controller properties
@@ -97,6 +97,8 @@
             $scope.newItem.title = '';
             $scope.newItem.duration = '';
             $scope.newItem.description = '';
+
+            $scope.editForm.$setPristine();
         }
     }
 
