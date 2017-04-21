@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="css/main.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Header</h1>
+
+    <h2>JSON Output</h2>
+    <div id="jsonOutput">
+
+    </div>
+    <p>Paragraph <span class="num">1</span></p>
+    <p>Paragraph <span class="num">2</span></p>
+    <p class="bla">Paragraph <span class="num">3</span></p>
+    <p>Paragraph <span class="num">4</span></p>
+    <p>Paragraph <span class="num">5</span></p>
+    <p>Paragraph <span class="num">6</span></p>
+    <p id="foo">Paragraph 7</p>
+    <p>Paragraph <span class="num">8</span></p>
+
+    <script src="js/vendor/jquery-1.12.0.min.js"></script>
+    <script>
+        $(function () {
+
+            $('span.num').append('<span>WOOHOO</span>');
+
+            $('p')
+                .click(function (e) {
+                    e.target.innerHTML = 'Was clicked at: ' + new Date();
+                    $(e.target).toggleClass('success', 'error');
+                });
+
+            $('#foo')
+                .text('yep')
+                .css('background-color', 'lightgrey')
+                .dblclick(function (e) {
+                    e.target.innerHTML = 'Was DOUBLE clicked at: ' + new Date();
+                });
+
+
+            $.getJSON('/courses', null, function (data) {
+                console.log(data);
+                data.forEach(function (item) {
+                    $('#jsonOutput').append('<div>' + item.title + '</div>');
+                });
+            });
+
+        });
+
+    </script>
+</body>
+</html>
